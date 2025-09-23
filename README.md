@@ -7,3 +7,5 @@
 - [Role-based access control]
 - [File Uploads (e.g., Profile Picture)]
 - [Search & Filtering]
+- [Notification (react-toastify) ]
+- [Charts or Admin Dashboard UI]
