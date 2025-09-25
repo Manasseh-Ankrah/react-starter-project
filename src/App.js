@@ -4,8 +4,10 @@ import SignupPage from "./pages/SignupPage";
 import "react-toastify/dist/ReactToastify.css";
 import SigninPage from "./pages/SigninPage";
 import { Route, Routes } from "react-router-dom";
-import Dashboard from "./pages/Dashboard";
+import AdminDashboard from "./pages/AdminDashboard";
 import PrivateRoute from "./components/PrivateRoute";
+import NotFoundPage from "./pages/NotFoundPage";
+import CustomerDashboard from "./pages/CustomerDashboard";
 
 function App() {
   return (
@@ -14,16 +16,19 @@ function App() {
       <Routes>
         <Route path='/' element={<SigninPage />} />
         <Route path='/signup' element={<SignupPage />} />
-        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/customer-dashboard' element={<CustomerDashboard />} />
+        {/* <Route path='/dashboard' element={<AdminDashboard />} /> */}
 
-        {/* <Route
+        <Route
           path='/dashboard'
           element={
             <PrivateRoute>
-              <Dashboard />
+              <AdminDashboard />
             </PrivateRoute>
           }
-        /> */}
+        />
+
+        <Route path='*' element={<NotFoundPage />} />
       </Routes>
     </>
   );

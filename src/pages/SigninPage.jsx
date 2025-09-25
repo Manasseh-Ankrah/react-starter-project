@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import "../styles/SignupPage.css";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const SigninPage = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -19,10 +21,13 @@ const SigninPage = () => {
       const res = await axios
         .post("http://localhost:8080/api/v1/auth/login", formData)
         .then(function (response) {
-          console.log("Successful =>> ", response.data.message);
-          const token = localStorage.setItem("token", response.data.tokens);
+          // console.log("Successful =>> ", response.data.message);
+          // const token = localStorage.setItem("token-new", response.data);
+          localStorage.setItem("token-new", JSON.stringify(response.data));
 
           toast.success(response.data.message);
+          // Navigate to dashboard if singnin is successful
+          // navigate("/dashboard");
         })
         .catch(function (error) {
           toast.error(error.response.data.messages[0]);
@@ -62,7 +67,7 @@ const SigninPage = () => {
         />
 
         <button type='submit' className='btn'>
-          Sign Up
+          Sign In
         </button>
       </form>
     </div>
