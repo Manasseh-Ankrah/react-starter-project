@@ -3,11 +3,12 @@ import "../styles/SignupPage.css";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { Avatar } from "@mui/material";
 
 const ProfileUploadPage = () => {
   const navigate = useNavigate();
   const [file, setFile] = useState(null);
-  const [name, setName] = useState("");
+  const [preview, setPreview] = useState("");
 
   // Second approach
   // const [firstName, setFirstName] = useState("Hello");
@@ -16,7 +17,6 @@ const ProfileUploadPage = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("profile", file);
-    formData.append("firstname", name);
 
     try {
       const res = await axios
@@ -39,27 +39,50 @@ const ProfileUploadPage = () => {
     }
   };
 
-  // const handleChange = (e) => {
-  //   setFormData({
-  //     ...formData,
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
-
   const handleFileChange = (e) => {
     e.preventDefault();
-    console.log("====================================");
-    console.log("File selected:", e.target.files[0]);
-    console.log("====================================");
 
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
+    previewFile(selectedFile);
+  };
+
+  const previewFile = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setPreview(reader.result);
+      console.log("====================================");
+      console.log("Read Data:", reader);
+      console.log("====================================");
+    };
   };
 
   return (
     <div className='signup-container'>
       <div className='signup-form'>
         <h2 className='signup-title'>Upload Profile Picture</h2>
+        {/* <img
+          src={preview}
+          style={{
+            width: "350px",
+            height: "150px",
+          }}
+        /> */}
+
+        {preview && (
+          <Avatar
+            alt='Remy Shwarp'
+            src={preview}
+            variant='rounded'
+            style={{
+              width: "350px",
+              height: "150px",
+            }}
+          />
+        )}
+
+        <br />
 
         <input
           type='file'
@@ -68,7 +91,6 @@ const ProfileUploadPage = () => {
           className='input'
           required
         />
-
         <button type='submit' className='btn' onClick={handleUpload}>
           Sign In
         </button>
