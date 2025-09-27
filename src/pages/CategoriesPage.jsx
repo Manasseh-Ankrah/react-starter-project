@@ -21,10 +21,11 @@ import { Paper } from "@mui/material";
 import { PieChart } from "@mui/x-charts/PieChart";
 import { BarChart } from "@mui/x-charts/BarChart";
 import ListProductsPage from "./ListProductsPage";
+import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
-export default function PermanentDrawerLeft() {
+export default function CategoriesPage() {
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: "#fff",
     ...theme.typography.body2,
@@ -60,6 +61,8 @@ export default function PermanentDrawerLeft() {
     );
   }
 
+  const navigate = useNavigate();
+
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -69,7 +72,7 @@ export default function PermanentDrawerLeft() {
       >
         <Toolbar>
           <Typography variant='h6' noWrap component='div'>
-            Admin Dashboard
+            Categories
           </Typography>
         </Toolbar>
       </AppBar>
@@ -91,7 +94,12 @@ export default function PermanentDrawerLeft() {
           {["Dashboard", "Categories", "Products", "Orders"].map(
             (text, index) => (
               <ListItem key={text} disablePadding>
-                <ListItemButton>
+                {/* {text === "Dashboard" &&( )} */}
+                <ListItemButton
+                  onClick={() => {
+                    navigate("/dashboard");
+                  }}
+                >
                   <ListItemIcon>
                     {index % 2 === 0 ? (
                       <GridViewIcon />
@@ -125,127 +133,12 @@ export default function PermanentDrawerLeft() {
       >
         <Toolbar />
         <Typography sx={{ marginBottom: 2 }}>
-          <Grid container spacing={2}>
-            {/* 1 */}
-            <Grid size={4}>
-              <Item
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  backgroundColor: "#E69515",
-                  color: "#fff",
-                  height: 150,
-                  gap: 10,
-                }}
-              >
-                <GridViewIcon fontSize='large' />
-                <Typography variant='h5' component='h5'>
-                  150
-                </Typography>
-                <Typography variant='h5' component='h5'>
-                  Total Users
-                </Typography>
-              </Item>
-            </Grid>
-
-            {/* 2 */}
-            <Grid size={4}>
-              <Item
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  backgroundColor: "#0A9BF5",
-                  color: "#fff",
-                  height: 150,
-                  gap: 10,
-                }}
-              >
-                <GridViewIcon fontSize='large' />
-                <Typography variant='h5' component='h5'>
-                  120
-                </Typography>
-                <Typography variant='h5' component='h5'>
-                  Total Products
-                </Typography>
-              </Item>
-            </Grid>
-
-            {/* 3 */}
-            <Grid size={4}>
-              <Item
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  backgroundColor: "#AF0AF5",
-                  color: "#fff",
-                  height: 150,
-                  gap: 10,
-                }}
-              >
-                <GridViewIcon fontSize='large' />
-                <Typography variant='h5' component='h5'>
-                  10,000
-                </Typography>
-                <Typography variant='h5' component='h5'>
-                  Total Amount
-                </Typography>
-              </Item>
-            </Grid>
-
-            <Grid size={6}>
-              <Item>
-                <Typography variant='h5' component='h5'>
-                  Total Sales
-                </Typography>
-
-                <BarChart
-                  xAxis={[{ data: ["Orders", "group B", "group C"] }]}
-                  series={[
-                    { data: [6, 3, 5] },
-                    { data: [1, 6, 3] },
-                    { data: [2, 5, 6] },
-                  ]}
-                  height={300}
-                />
-              </Item>
-            </Grid>
-            <Grid size={6}>
-              <Item>
-                <Typography variant='h5' component='h5'>
-                  Total Orders
-                </Typography>
-
-                <PieChart
-                  series={[
-                    {
-                      data: [
-                        { value: 10, label: "Circle", labelMarkType: "circle" },
-                        {
-                          value: 15,
-                          label: "Diamond",
-                          labelMarkType: HTMLDiamond,
-                        },
-                        { value: 20, label: "Star", labelMarkType: SVGStar },
-                      ],
-                    },
-                  ]}
-                  width={200}
-                  height={300}
-                />
-              </Item>
-            </Grid>
-          </Grid>
+          <Grid container spacing={2}></Grid>
         </Typography>
         <Typography sx={{ marginBottom: 2 }}>
           <Grid size={12}>
             <Typography variant='h5' component='h5'>
-              Available Products
+              View All Categories
             </Typography>
             <ListProductsPage />
           </Grid>

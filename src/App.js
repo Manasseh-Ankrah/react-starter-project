@@ -11,6 +11,7 @@ import CustomerDashboard from "./pages/CustomerDashboard";
 import ProfileUploadPage from "./pages/ProfileUploadPage";
 import ListPage from "./pages/ListPage";
 import ListProductsPage from "./pages/ListProductsPage";
+import CategoriesPage from "./pages/CategoriesPage";
 
 function App() {
   // const pages = {
@@ -24,19 +25,21 @@ function App() {
       <Routes>
         <Route path='/' element={<SigninPage />} />
         <Route path='/signup' element={<SignupPage />} />
+        <Route path='/dashboard' element={<AdminDashboard />} />
         <Route path='/customer-dashboard' element={<CustomerDashboard />} />
         <Route path='/profile' element={<ProfileUploadPage />} />
         <Route path='/list' element={<ListPage />} />
         <Route path='/list-products' element={<ListProductsPage />} />
+        <Route path='/categories' element={<CategoriesPage />} />
 
-        <Route
+        {/* <Route
           path='/dashboard'
           element={
             <PrivateRoute>
               <AdminDashboard />
             </PrivateRoute>
           }
-        />
+        /> */}
 
         <Route path='*' element={<NotFoundPage />} />
       </Routes>

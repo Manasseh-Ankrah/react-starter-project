@@ -85,8 +85,8 @@ export default function ListProductsPage() {
   // console.log("====================================");
 
   return (
-    <div style={{ width: "80%", margin: "50px auto" }}>
-      <TextField
+    <div style={{ width: "100%", margin: "50px auto" }}>
+      {/* <TextField
         id='outlined-select-currency'
         select
         label='Select Tag'
@@ -99,9 +99,9 @@ export default function ListProductsPage() {
             {option.name}
           </MenuItem>
         ))}
-      </TextField>
+      </TextField> */}
 
-      <div style={{ height: "20px" }}></div>
+      {/* <div style={{ height: "20px" }}></div> */}
 
       {/* Table */}
       <TableContainer component={Paper}>
