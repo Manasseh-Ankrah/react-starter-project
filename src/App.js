@@ -10,6 +10,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import CustomerDashboard from "./pages/CustomerDashboard";
 import ProfileUploadPage from "./pages/ProfileUploadPage";
 import ListPage from "./pages/ListPage";
+import ListProductsPage from "./pages/ListProductsPage";
 
 function App() {
   // const pages = {
@@ -26,6 +27,7 @@ function App() {
         <Route path='/customer-dashboard' element={<CustomerDashboard />} />
         <Route path='/profile' element={<ProfileUploadPage />} />
         <Route path='/list' element={<ListPage />} />
+        <Route path='/list-products' element={<ListProductsPage />} />
 
         <Route
           path='/dashboard'
