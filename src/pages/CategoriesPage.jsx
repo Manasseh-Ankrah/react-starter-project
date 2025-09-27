@@ -18,8 +18,6 @@ import GridViewIcon from "@mui/icons-material/GridView";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { styled } from "@mui/material/styles";
 import { Paper } from "@mui/material";
-import { PieChart } from "@mui/x-charts/PieChart";
-import { BarChart } from "@mui/x-charts/BarChart";
 import ListProductsPage from "./ListProductsPage";
 import { useNavigate } from "react-router-dom";
 
@@ -36,30 +34,6 @@ export default function CategoriesPage() {
       backgroundColor: "#1A2027",
     }),
   }));
-
-  function HTMLDiamond({ className, color }) {
-    return (
-      <div
-        className={className}
-        style={{
-          transform: "scale(0.6, 0.75) rotate(45deg)",
-          background: color,
-        }}
-      />
-    );
-  }
-
-  function SVGStar({ className, color }) {
-    return (
-      <svg viewBox='-7.423 -7.423 14.846 14.846'>
-        <path
-          className={className}
-          d='M0,-7.528L1.69,-2.326L7.16,-2.326L2.735,0.889L4.425,6.09L0,2.875L-4.425,6.09L-2.735,0.889L-7.16,-2.326L-1.69,-2.326Z'
-          fill={color}
-        />
-      </svg>
-    );
-  }
 
   const navigate = useNavigate();
 
