@@ -32,12 +32,17 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function ListProductsPage() {
   const [productList, setProductList] = useState([]);
+  const [tagList, setTagList] = useState([]);
+  const [tag, setTag] = useState("");
+
+  // {{localhost}}/api/v1/products?tag=Featured
+  const url = `http://localhost:8080/api/v1/products?tag=${tag}`;
 
   useEffect(() => {
     const handleGetProducts = async (e) => {
       try {
         const res = await axios
-          .get("http://localhost:8080/api/v1/products", {
+          .get(`${url}`, {
             Authorization:
               "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsImlhdCI6MTc1ODk4NjU3MiwiZXhwIjoxNzU5MDcyOTcyfQ.szqBxTfyCRgAm1A1RBcqNOug0OCubD-8ajHVevwJVOI",
           })
@@ -52,47 +57,50 @@ export default function ListProductsPage() {
         console.log(error);
       }
     };
+
+    const handleGetTags = async (e) => {
+      try {
+        const res = await axios
+          .get("http://localhost:8080/api/v1/tags", {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsImlhdCI6MTc1ODk4NjU3MiwiZXhwIjoxNzU5MDcyOTcyfQ.szqBxTfyCRgAm1A1RBcqNOug0OCubD-8ajHVevwJVOI",
+          })
+          .then(function (response) {
+            console.log("Successful =>> ", response.data);
+            setTagList(response.data.content);
+          })
+          .catch(function (error) {
+            console.log(error.response.data.messages[0]);
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    };
     handleGetProducts();
-  }, []);
+    handleGetTags();
+  }, [tag]);
 
-  console.log("====================================");
-  console.log("Saved products => ", productList);
-  console.log("====================================");
-
-  const currencies = [
-    {
-      value: "USD",
-      label: "$",
-    },
-    {
-      value: "EUR",
-      label: "€",
-    },
-    {
-      value: "BTC",
-      label: "฿",
-    },
-    {
-      value: "JPY",
-      label: "¥",
-    },
-  ];
+  // console.log("====================================");
+  // console.log("Saved tag => ", tag);
+  // console.log("====================================");
 
   return (
     <div style={{ width: "80%", margin: "50px auto" }}>
       <TextField
         id='outlined-select-currency'
         select
-        label='Select'
-        defaultValue='EUR'
-        helperText='Please select your currency'
+        label='Select Tag'
+        value={tag}
+        onChange={(e) => setTag(e.target.value)}
+        helperText='Please select product tag to filter'
       >
-        {currencies.map((option) => (
-          <MenuItem key={option.value} value={option.value}>
-            {option.label}
+        {tagList?.map((option) => (
+          <MenuItem key={option?.id} value={option?.name}>
+            {option.name}
           </MenuItem>
         ))}
       </TextField>
+
       <div style={{ height: "20px" }}></div>
 
       {/* Table */}
