@@ -8,8 +8,14 @@ import AdminDashboard from "./pages/AdminDashboard";
 import PrivateRoute from "./components/PrivateRoute";
 import NotFoundPage from "./pages/NotFoundPage";
 import CustomerDashboard from "./pages/CustomerDashboard";
+import ProfileUploadPage from "./pages/ProfileUploadPage";
 
 function App() {
+  // const pages = {
+  //   admin: <AdminDashboard />,
+  //   customer: <CustomerDashboard />,
+  // };
+
   return (
     <>
       <ToastContainer position='top-right' />
@@ -17,7 +23,7 @@ function App() {
         <Route path='/' element={<SigninPage />} />
         <Route path='/signup' element={<SignupPage />} />
         <Route path='/customer-dashboard' element={<CustomerDashboard />} />
-        {/* <Route path='/dashboard' element={<AdminDashboard />} /> */}
+        <Route path='/profile' element={<ProfileUploadPage />} />
 
         <Route
           path='/dashboard'

@@ -15,14 +15,13 @@ const SigninPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    // console.log("Form submitted:", formData);
 
     try {
       const res = await axios
         .post("http://localhost:8080/api/v1/auth/login", formData)
         .then(function (response) {
           // console.log("Successful =>> ", response.data.message);
-          // const token = localStorage.setItem("token-new", response.data);
           localStorage.setItem("token-new", JSON.stringify(response.data));
 
           toast.success(response.data.message);
@@ -42,7 +41,6 @@ const SigninPage = () => {
       ...formData,
       [e.target.name]: e.target.value,
     });
-    console.log("Form submitted:", formData);
   };
 
   return (

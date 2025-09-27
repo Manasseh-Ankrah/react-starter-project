@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const AdminDashboard = () => {
   // const token = localStorage.getItem("token-new");
-  const token = JSON.parse(localStorage.getItem("token-new"));
+  // const token = JSON.parse(localStorage.getItem("token-new"));
   // console.log(token); // full object
 
   // const navigate = useNavigate();
